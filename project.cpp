@@ -134,20 +134,28 @@ void renderLines() {
     glVertex2f(1022, 1038); glVertex2f(996, 1041);
     glVertex2f(996, 1041); glVertex2f(995, 964);
 
+    //Left Picture Six
+    glVertex2f(1006, 1081); glVertex2f(1024, 1073);
+    glVertex2f(1024, 1073); glVertex2f(1018, 1032);
+    glVertex2f(1018, 1032); glVertex2f(1017, 961);
+    glVertex2f(1017, 961); glVertex2f(1006, 966);
+    glVertex2f(1006, 966); glVertex2f(1001, 988);
+    glVertex2f(1001, 988); glVertex2f(1001, 1041);
+    glVertex2f(1001, 1041); glVertex2f(1006, 1081);
+
+    // Left Picture Seven
+    glVertex2f(1003, 1083); glVertex2f(1019, 1075);
+    glVertex2f(1019, 1075); glVertex2f(1019, 1114);
+    glVertex2f(1019, 1114); glVertex2f(1004, 1125);
+    glVertex2f(1004, 1125); glVertex2f(1003, 1083);
+
+    // Left Picture Eight
+    glVertex2f(1004, 1126); glVertex2f(1019, 1115);
+    glVertex2f(1019, 1115); glVertex2f(1020, 1135);
+    glVertex2f(1020, 1135); glVertex2f(1004, 1149);
+    glVertex2f(1004, 1149); glVertex2f(1004, 1126);
 
 
-    
-    
-   
-
-
-
-
-
-
-
-
-   
 
 
 
