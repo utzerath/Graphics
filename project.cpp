@@ -56,10 +56,10 @@ void renderLines() {
     glVertex2f(1164, 1339); glVertex2f(1104, 1339);
 
     //Left Middle Pillar Bottom Side
-    glVertex2f(1164, 1309); glVertex2f(1164, 1339);
-    glVertex2f(1164, 1339);glVertex2f(1180, 1298);
-    glVertex2f(1180, 1298); glVertex2f(1180, 1276);
-    glVertex2f(1180, 1276); glVertex2f(1164, 1309);
+    glVertex2f(1164, 1310); glVertex2f(1164, 1339);
+    glVertex2f(1164, 1339);glVertex2f(1178, 1301);
+    glVertex2f(1178, 1301); glVertex2f(1178, 1274);
+    glVertex2f(1178, 1274); glVertex2f(1164, 1310);
 
     //Left Door Frame Part
     glVertex2f(899, 641); glVertex2f(984, 685);
@@ -155,6 +155,233 @@ void renderLines() {
     glVertex2f(1020, 1135); glVertex2f(1004, 1149);
     glVertex2f(1004, 1149); glVertex2f(1004, 1126);
 
+    // Skinny Piece of Wall Left Side
+    glVertex2f(1165, 588); glVertex2f(1175, 588);
+    glVertex2f(1175, 588); glVertex2f(1186, 1132);
+    glVertex2f(1186, 1132); glVertex2f(1176, 1150); 
+    glVertex2f(1176, 1150); glVertex2f(1165, 588);
+
+    // Skinny Bottom Left Side
+    glVertex2f(1176, 1150); glVertex2f(1186, 1132);
+    glVertex2f(1186, 1132); glVertex2f(1186, 1151);
+    glVertex2f(1186, 1151); glVertex2f(1176, 1169);
+    glVertex2f(1176, 1169); glVertex2f(1176, 1150);
+    
+    //Left Side Far Door Wall
+    glVertex2f(1177, 651); glVertex2f(1195, 678);
+    glVertex2f(1195, 678); glVertex2f(1202, 1094);
+    glVertex2f(1202, 1094); glVertex2f(1284, 1094); 
+    glVertex2f(1284, 1094); glVertex2f(1284, 1110); 
+    glVertex2f(1284, 1110); glVertex2f(1186, 1125);
+    glVertex2f(1186, 1125); glVertex2f(1177, 651);
+
+    //Sprinkeler Middle Bottom (Above Middle Door)
+    glVertex2f(1176, 648); glVertex2f(1539, 651);
+    glVertex2f(1539, 651); glVertex2f(1508, 680);
+    glVertex2f(1508, 680); glVertex2f(1195, 678);
+    glVertex2f(1195, 678); glVertex2f(1176, 648);
+
+    // Box Middle Bottom
+    glVertex2f(1264, 656); glVertex2f(1458, 658);
+    glVertex2f(1458, 658); glVertex2f(1448, 671);
+    glVertex2f(1448, 671); glVertex2f(1268, 669);
+    glVertex2f(1268, 669); glVertex2f(1264, 656);
+
+    // Top Wall Part Facing You With Vent
+    glVertex2f(1176, 648); glVertex2f(1175, 589); 
+    glVertex2f(1175, 589); glVertex2f(1540, 592);
+    glVertex2f(1540, 592); glVertex2f(1539, 652);
+    glVertex2f(1539, 652); glVertex2f(1176, 648);
+
+    // Vent
+    glVertex2f(1290, 606); glVertex2f(1396, 606);
+    glVertex2f(1396, 606); glVertex2f(1397, 611);
+    glVertex2f(1397, 611); glVertex2f(1435, 611); 
+    glVertex2f(1435, 611); glVertex2f(1435, 638);
+    glVertex2f(1435, 638); glVertex2f(1290, 639);
+    glVertex2f(1290, 639); glVertex2f(1290, 606);
+
+    // Left Inner Vent
+    glVertex2f(1296, 612); glVertex2f(1360, 612);
+    glVertex2f(1360, 612); glVertex2f(1360, 636);
+    glVertex2f(1360, 636); glVertex2f(1296, 635);
+    glVertex2f(1296, 635); glVertex2f(1296, 612);
+
+    // Right Inner Vent
+    glVertex2f(1365, 612); glVertex2f(1430, 612);
+    glVertex2f(1430, 612); glVertex2f(1429, 636);
+    glVertex2f(1429, 636); glVertex2f(1365, 636);
+    glVertex2f(1365, 636); glVertex2f(1365, 612);
+
+    // Exit Sign
+    glVertex2f(1397, 611); glVertex2f(1459, 610);
+    glVertex2f(1459, 610); glVertex2f(1459, 572);
+    glVertex2f(1459, 572); glVertex2f(1396, 573);
+    glVertex2f(1396, 573); glVertex2f(1396, 611);
+
+    // THE MIDDLE DOOR 
+    glVertex2f(1284, 1105); glVertex2f(1429, 1103);
+    glVertex2f(1429, 1103); glVertex2f(1429, 738);
+    glVertex2f(1429, 738); glVertex2f(1281, 738);
+    glVertex2f(1281, 738); glVertex2f(1284, 1105);
+
+    // Door Window
+    glVertex2f(1303, 1066); glVertex2f(1407, 1066);
+    glVertex2f(1407, 1066); glVertex2f(1406, 762);
+    glVertex2f(1406, 762); glVertex2f(1401, 762);
+    glVertex2f(1401, 762); glVertex2f(1401, 768);
+    glVertex2f(1401, 768); glVertex2f(1356, 768);
+    glVertex2f(1356, 768); glVertex2f(1356, 761);
+    glVertex2f(1356, 761); glVertex2f(1300, 761);
+    glVertex2f(1300, 761); glVertex2f(1303, 1066);
+
+    // Middle Wall Right Bottom
+    glVertex2f(1429, 1094); glVertex2f(1429, 1105);
+    glVertex2f(1429, 1105); glVertex2f(1510, 1117);  
+    glVertex2f(1510, 1117); glVertex2f(1510, 1097); 
+    glVertex2f(1510, 1097); glVertex2f(1504, 1093);  
+    glVertex2f(1504, 1093); glVertex2f(1429, 1094);  
+
+    // Middle Door Wall
+    glVertex2f(1195, 678); glVertex2f(1202, 1094);
+    glVertex2f(1202, 1094); glVertex2f(1284, 1094); 
+    glVertex2f(1284, 1094); glVertex2f(1281, 738);
+    glVertex2f(1281, 738); glVertex2f(1429, 738);
+    glVertex2f(1429, 738); glVertex2f(1429, 1094);
+    glVertex2f(1429, 1094); glVertex2f(1504, 1093); 
+    glVertex2f(1504, 1093);  glVertex2f(1508, 680);
+    glVertex2f(1508, 680); glVertex2f(1195, 678);
+
+    // Far Right Wall Dark Part
+    glVertex2f(1510, 1117); glVertex2f(1510, 1097); 
+    glVertex2f(1510, 1097); glVertex2f(1504, 1093);  
+    glVertex2f(1504, 1093); glVertex2f(1508, 680);
+    glVertex2f(1508, 680); glVertex2f(1539, 651);
+    glVertex2f(1539, 651); glVertex2f(1540, 592);
+    glVertex2f(1540, 592); glVertex2f(1554, 592); 
+    glVertex2f(1554, 592); glVertex2f(1601, 535); 
+    glVertex2f(1601, 535); glVertex2f(1601, 575); 
+    glVertex2f(1601, 575); glVertex2f(1584, 653); 
+    glVertex2f(1584, 653); glVertex2f(1582, 772); 
+    glVertex2f(1582, 772); glVertex2f(1530, 789); 
+    glVertex2f(1530, 789); glVertex2f(1516, 794); 
+    glVertex2f(1516, 794); glVertex2f(1514, 1114); 
+    glVertex2f(1514, 1114); glVertex2f(1510, 1114);
+    glVertex2f(1510, 1114); glVertex2f(1510, 1117); 
+
+    // Far Right Wall Light Part
+    glVertex2f(1601, 575); glVertex2f(1584, 653); 
+    glVertex2f(1584, 653); glVertex2f(1582, 772);
+    glVertex2f(1582, 772); glVertex2f(1597, 774);
+    glVertex2f(1597, 774); glVertex2f(1601, 575);
+
+    //Far Right Wall Door Reflection
+    glVertex2f(1530, 789); glVertex2f(1597, 774);
+    glVertex2f(1597, 774); glVertex2f(1593, 1080);
+    glVertex2f(1593, 1080); glVertex2f(1529, 1082);
+    glVertex2f(1529, 1082); glVertex2f(1530, 789);
+
+    //Far right wall Bottom Wall Part
+    glVertex2f(1529, 1082); glVertex2f(1529, 1120); 
+    glVertex2f(1529, 1120); glVertex2f(1591, 1196); 
+    glVertex2f(1591, 1196); glVertex2f(1593, 1080);
+    glVertex2f(1593, 1080); glVertex2f(1529, 1082);
+    
+    //Far Right Wall Bottom 
+    glVertex2f(1529, 1120); glVertex2f(1591, 1196);
+    glVertex2f(1591, 1196); glVertex2f(1591, 1213);
+    glVertex2f(1591, 1213); glVertex2f(1529, 1137);
+    glVertex2f(1529, 1137); glVertex2f(1529, 1120);
+
+    // Far Right Door
+    glVertex2f(1514, 1114); glVertex2f(1529, 1131);
+    glVertex2f(1529, 1131); glVertex2f(1530, 789);
+    glVertex2f(1530, 789); glVertex2f(1516, 794); 
+    glVertex2f(1516, 794); glVertex2f(1514, 1114); 
+
+    // Far Right Pillar Side
+    glVertex2f(1590, 1264); glVertex2f(1602, 474); 
+    glVertex2f(1602, 474); glVertex2f(1627, 437); 
+    glVertex2f(1627, 437); glVertex2f(1615, 1302); 
+    glVertex2f(1615, 1302); glVertex2f(1590, 1264);
+
+    // Far Right Pillar Side Bottom
+    glVertex2f(1615, 1302); glVertex2f(1590, 1264);
+    glVertex2f(1590, 1264); glVertex2f(1590, 1293);
+    glVertex2f(1590, 1293); glVertex2f(1615, 1331);
+    glVertex2f(1615, 1331); glVertex2f(1615, 1302);
+
+    // Far Right Pillar Front Bottom
+    glVertex2f(1615, 1331); glVertex2f(1615, 1302);
+    glVertex2f(1615, 1302); glVertex2f(1675, 1302);
+    glVertex2f(1675, 1302); glVertex2f(1675, 1331); 
+    glVertex2f(1675, 1331); glVertex2f(1615, 1331);
+
+    //Far Right Pillar Side
+    glVertex2f(1615, 1302); glVertex2f(1675, 1302);
+    glVertex2f(1675, 1302); glVertex2f(1688, 437);
+    glVertex2f(1688, 437); glVertex2f(1627, 437);
+    glVertex2f(1627, 437); glVertex2f(1615, 1302);
+
+    //Right Door Wall
+    glVertex2f(1675, 1302); glVertex2f(1688, 437);
+    glVertex2f(1688, 437); glVertex2f(2094, 0);
+    glVertex2f(2094, 0); glVertex2f(2134, 0);
+    glVertex2f(2134, 0); glVertex2f(2069, 1788);
+    glVertex2f(2069, 1788); glVertex2f(1984, 1686);
+    glVertex2f(1984, 1686); glVertex2f(2017, 623);
+    glVertex2f(2017, 623);  glVertex2f(1860, 675);
+    glVertex2f(1860, 675); glVertex2f(1839, 1509);
+    glVertex2f(1839, 1509); glVertex2f(1675, 1302);
+    
+    //Right Door Wall Bottom
+    glVertex2f(1675, 1302); glVertex2f(1675, 1331);
+    glVertex2f(1675, 1331); glVertex2f(1838, 1546);
+    glVertex2f(1838, 1546); glVertex2f(1839, 1509);
+    glVertex2f(1839, 1509); glVertex2f(1675, 1302);
+
+    //Right Door Wall Bottom Pt 2
+    glVertex2f(2069, 1788); glVertex2f(1984, 1686);
+    glVertex2f(1984, 1686); glVertex2f(1983, 1739);
+    glVertex2f(1983, 1739); glVertex2f(2068, 1843);
+    glVertex2f(2068, 1843); glVertex2f(2069, 1788);
+
+    //Close Right Pillar Side
+    glVertex2f(2134, 0); glVertex2f(2063, 1958);
+    glVertex2f(2063, 1958); glVertex2f(2063, 1958);
+    glVertex2f(2063, 1958); glVertex2f(2187, 2141);
+    glVertex2f(2187, 2141); glVertex2f(2285, 2141);
+    glVertex2f(2285, 2141); glVertex2f(2386, 0);
+    glVertex2f(2386, 0); glVertex2f(2134, 0);
+
+    //Close Right Pillar Front
+    glVertex2f(2285, 2141); glVertex2f(2386, 0);
+    glVertex2f(2386, 0); glVertex2f(2591, 0);
+    glVertex2f(2591, 0); glVertex2f(2466, 2141);
+    glVertex2f(2466, 2141); glVertex2f(2285, 2141);
+
+    //Close Right Pillar Bottom
+    glVertex2f(2063, 1958); glVertex2f(2187, 2141);
+    glVertex2f(2187, 2141); glVertex2f(2126, 2141);
+    glVertex2f(2126, 2141); glVertex2f(2055, 2018);
+    glVertex2f(2055, 2018); glVertex2f(2056, 1962);
+    glVertex2f(2056, 1962); glVertex2f(2063, 1958);
+
+    //Right Door
+    glVertex2f(1979, 1614); glVertex2f(1912, 1537);
+    glVertex2f(1912, 1537); glVertex2f(1932, 738);
+    glVertex2f(1932, 738); glVertex2f(2006, 722);
+    glVertex2f(2006, 722); glVertex2f(1979, 1614);
+
+    //Right Door Frame
+    glVertex2f(1975, 1733); glVertex2f(1982, 1739);
+    glVertex2f(1982, 1739); glVertex2f(2017, 623);
+    glVertex2f(2017, 623); glVertex2f(1860, 675);
+    glVertex2f(1860, 675); glVertex2f(1839, 1550);
+    glVertex2f(1839, 1550); glVertex2f(1845, 1553);
+    glVertex2f(1845, 1553); glVertex2f(1865, 688);
+    glVertex2f(1865, 688); glVertex2f(2008, 647);
+    glVertex2f(2008, 647); glVertex2f(1975, 1733);
 
 
 
