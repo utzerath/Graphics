@@ -369,9 +369,9 @@ void renderLines() {
 
     //Right Door
     glVertex2f(1979, 1614); glVertex2f(1912, 1537);
-    glVertex2f(1912, 1537); glVertex2f(1932, 738);
-    glVertex2f(1932, 738); glVertex2f(2006, 722);
-    glVertex2f(2006, 722); glVertex2f(1979, 1614);
+    glVertex2f(1912, 1537); glVertex2f(1933, 698);
+    glVertex2f(1933, 698); glVertex2f(2008, 680);
+    glVertex2f(2008, 680); glVertex2f(1979, 1614);
 
     //Right Door Frame
     glVertex2f(1975, 1733); glVertex2f(1982, 1739);
@@ -383,7 +383,38 @@ void renderLines() {
     glVertex2f(1865, 688); glVertex2f(2008, 647);
     glVertex2f(2008, 647); glVertex2f(1975, 1733);
 
+    //Right Door Frame Inner Part
+    glVertex2f(1845, 1553); glVertex2f(1865, 688);
+    glVertex2f(1865, 688); glVertex2f(2008, 647);
+    glVertex2f(2008, 647); glVertex2f(2008, 662);
+    glVertex2f(2008, 662); glVertex2f(1891, 696);
+    glVertex2f(1891, 696); glVertex2f(1869, 1552);
+    glVertex2f(1869, 1552); glVertex2f(1848, 1557);
+    glVertex2f(1848, 1557); glVertex2f(1845, 1553);
 
+    //Right Door Box
+    glVertex2f(2006, 741); glVertex2f(1958, 749);
+    glVertex2f(1958, 749); glVertex2f(1944, 1173);
+    glVertex2f(1944, 1173); glVertex2f(1992, 1193);
+    glVertex2f(1992, 1193); glVertex2f(2006, 741);
+
+    //Right Door Bottom Box
+    glVertex2f(1989, 1276); glVertex2f(1942, 1251);
+    glVertex2f(1942, 1251); glVertex2f(1937, 1481);
+    glVertex2f(1937, 1481); glVertex2f(1982, 1524);
+    glVertex2f(1982, 1524); glVertex2f(1989, 1276);
+
+    //Right Door Bottom 
+    glVertex2f(1912, 1553); glVertex2f(1978, 1628);
+    glVertex2f(1978, 1628); glVertex2f(1979, 1613);
+    glVertex2f(1979, 1613); glVertex2f(1912, 1540);
+    glVertex2f(1912, 1540); glVertex2f(1912, 1553);
+
+    //Right Door Floor Sliver Thingy
+    glVertex2f(1912, 1553); glVertex2f(1900, 1559);
+    glVertex2f(1900, 1559); glVertex2f(1977, 1653);
+    glVertex2f(1977, 1653); glVertex2f(1977, 1627);
+    glVertex2f(1977, 1627); glVertex2f(1912, 1553);
 
 
     glEnd();
