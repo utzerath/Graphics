@@ -467,7 +467,7 @@ void renderShapes() {
     };
 
     // Far Left Pillar
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.5176f, 0.4863f, 0.4353f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(614, 2141);
         glVertex2f(508, 0);
@@ -477,7 +477,7 @@ void renderShapes() {
     glEnd();
 
     // Far Left Pillar Right Square
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.5608f, 0.5529f, 0.5020f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(811, 2141);
         glVertex2f(724, 0);
@@ -488,7 +488,7 @@ void renderShapes() {
     glEnd();
 
     // Far Left Pillar Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2431f, 0.1961f, 0.1333f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(894, 2141);
         glVertex2f(943, 1999);
@@ -500,7 +500,7 @@ void renderShapes() {
 
 
     // Left Door Wall
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.8588f, 0.8353f, 0.7882f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(898, 622);
         glVertex2f(880, 65);
@@ -512,7 +512,7 @@ void renderShapes() {
     glEnd();
 
     // Left Door Wall Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.5843f, 0.5490f, 0.4824f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1104, 1309);
         glVertex2f(1009, 1519);
@@ -522,7 +522,7 @@ void renderShapes() {
     glEnd();
 
     // Left Middle Pillar Front Square
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.4784f, 0.4784f, 0.4314f, 1.0f);  // Red, Green, Blue, Alpha
     glBegin(GL_POLYGON);
         glVertex2f(1084, 431);
         glVertex2f(1104, 1309);
@@ -533,7 +533,7 @@ void renderShapes() {
 
 
     // Left Middle Pillar Side Square
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.6078f, 0.6549f, 0.6627f, 1.0f);  // Red, Green, Blue, Alpha
     glBegin(GL_POLYGON);
         glVertex2f(1144, 431);
         glVertex2f(1162, 470);
@@ -543,7 +543,7 @@ void renderShapes() {
     glEnd();
 
     // Left Middle Pillar Bottom Front
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0157f, 0.0157f, 0.0078f, 1.0f);  // Red, Green, Blue, Alpha
     glBegin(GL_POLYGON);
         glVertex2f(1104, 1339);
         glVertex2f(1104, 1309);
@@ -553,7 +553,7 @@ void renderShapes() {
     glEnd();
 
     // Left Middle Pillar Bottom Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.4784f, 0.5098f, 0.5098f, 1.0f);  // Red, Green, Blue, Alpha
     glBegin(GL_POLYGON);
         glVertex2f(1164, 1310);
         glVertex2f(1164, 1339);
@@ -712,7 +712,7 @@ void renderShapes() {
     glEnd();
 
     // Skinny Piece of Wall Left Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3529f, 0.5020f, 0.5451f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1165, 588);
         glVertex2f(1175, 588);
@@ -722,7 +722,7 @@ void renderShapes() {
     glEnd();
 
     // Skinny Bottom Left Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.1137f, 0.2196f, 0.2549f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1176, 1150);
         glVertex2f(1186, 1132);
@@ -732,7 +732,7 @@ void renderShapes() {
     glEnd();
 
     // Left Side Far Door Wall
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0353f, 0.0627f, 0.1020f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1177, 651);
         glVertex2f(1195, 678);
@@ -744,8 +744,7 @@ void renderShapes() {
     glEnd();
 
     // Sprinkler Middle Bottom (Above Middle Door)
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
+    glColor4f(0.2392f, 0.3451f, 0.3804f, 1.0f); 
         glVertex2f(1176, 648);
         glVertex2f(1539, 651);
         glVertex2f(1508, 680);
@@ -755,7 +754,7 @@ void renderShapes() {
 
 
     // Box Middle Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2353f, 0.3765f, 0.4314f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1264, 656);
         glVertex2f(1458, 658);
@@ -765,7 +764,7 @@ void renderShapes() {
     glEnd();
 
     // Top Wall Part Facing You With Vent
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2824f, 0.3059f, 0.3059f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1176, 648);
         glVertex2f(1175, 589);
@@ -775,7 +774,7 @@ void renderShapes() {
     glEnd();
 
     // Vent
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3137f, 0.3412f, 0.3765f, 1.0f);  // Red, Green, Blue, Alpha
     glBegin(GL_POLYGON);
         glVertex2f(1290, 606);
         glVertex2f(1396, 606);
@@ -787,7 +786,7 @@ void renderShapes() {
     glEnd();
 
     // Left Inner Vent
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0588f, 0.1137f, 0.1490f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1296, 612);
         glVertex2f(1360, 612);
@@ -797,7 +796,7 @@ void renderShapes() {
     glEnd();
 
     // Right Inner Vent
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0588f, 0.1137f, 0.1490f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1365, 612);
         glVertex2f(1430, 612);
@@ -815,6 +814,20 @@ void renderShapes() {
         glVertex2f(1459, 572);
         glVertex2f(1396, 573);
         glVertex2f(1396, 611);
+    glEnd();
+
+    // Middle Door Wall
+    glColor4f(0.1255f, 0.1843f, 0.2118f, 1.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1195, 678);
+        glVertex2f(1202, 1094);
+        glVertex2f(1284, 1094);
+        glVertex2f(1281, 738);
+        glVertex2f(1429, 738);
+        glVertex2f(1429, 1094);
+        glVertex2f(1504, 1093);
+        glVertex2f(1508, 680);
+        glVertex2f(1195, 678);
     glEnd();
 
     // The Middle Door
@@ -842,7 +855,7 @@ void renderShapes() {
     glEnd();
 
     // Middle Wall Right Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0039f, 0.0196f, 0.0627f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1429, 1094);
         glVertex2f(1429, 1105);
@@ -853,22 +866,10 @@ void renderShapes() {
     glEnd();
 
 
-    // Middle Door Wall
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(1195, 678);
-        glVertex2f(1202, 1094);
-        glVertex2f(1284, 1094);
-        glVertex2f(1281, 738);
-        glVertex2f(1429, 738);
-        glVertex2f(1429, 1094);
-        glVertex2f(1504, 1093);
-        glVertex2f(1508, 680);
-        glVertex2f(1195, 678);
-    glEnd();
+
 
     // Far Right Wall Dark Part
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2353f, 0.2863f, 0.3176f, 1.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1510, 1117);
         glVertex2f(1510, 1097);
@@ -899,7 +900,7 @@ void renderShapes() {
     glEnd();
 
     // Far Right Wall Door Reflection
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3804f, 0.6980f, 0.8667f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1530, 789);
         glVertex2f(1597, 774);
@@ -910,7 +911,7 @@ void renderShapes() {
 
 
     // Far right wall Bottom Wall Part
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3725f, 0.5843f, 0.6863f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1529, 1082);
         glVertex2f(1529, 1120);
@@ -940,7 +941,7 @@ void renderShapes() {
     glEnd();
 
     // Far Right Pillar Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.6118f, 0.6196f, 0.5765f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1590, 1264);
         glVertex2f(1602, 474);
@@ -950,7 +951,7 @@ void renderShapes() {
     glEnd();
 
     // Far Right Pillar Side Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3333f, 0.3725f, 0.3765f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1615, 1302);
         glVertex2f(1590, 1264);
@@ -960,7 +961,7 @@ void renderShapes() {
     glEnd();
 
     // Far Right Pillar Front Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.0118f, 0.0118f, 0.0039f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1615, 1331);
         glVertex2f(1615, 1302);
@@ -971,7 +972,7 @@ void renderShapes() {
 
 
     // Far Right Pillar Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.3882f, 0.3882f, 0.3490f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1615, 1302);
         glVertex2f(1675, 1302);
@@ -981,7 +982,7 @@ void renderShapes() {
     glEnd();
 
     // Right Door Wall
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.6941f, 0.6667f, 0.6039f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1675, 1302);
         glVertex2f(1688, 437);
@@ -996,8 +997,8 @@ void renderShapes() {
     glEnd();
 
     // Right Door Wall Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
+    // not worlking tried testing with hot pink
+    glColor4f(1.0f, 0.4118f, 0.7059f, 1.0f);  
         glVertex2f(1675, 1302);
         glVertex2f(1675, 1331);
         glVertex2f(1838, 1546);
@@ -1006,7 +1007,7 @@ void renderShapes() {
     glEnd();
 
     // Right Door Wall Bottom Pt 2
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.1961f, 0.1569f, 0.1098f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(2069, 1788);
         glVertex2f(1984, 1686);
@@ -1017,7 +1018,7 @@ void renderShapes() {
 
 
     // Close Right Pillar Side
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.4549f, 0.4314f, 0.3843f, 1.0f);
     glBegin(GL_POLYGON);
         glVertex2f(2134, 0);
         glVertex2f(2063, 1958);
@@ -1028,7 +1029,7 @@ void renderShapes() {
     glEnd();
 
     // Close Right Pillar Front
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.8314f, 0.8000f, 0.7098f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(2285, 2141);
         glVertex2f(2386, 0);
@@ -1038,7 +1039,7 @@ void renderShapes() {
     glEnd();
 
     // Close Right Pillar Bottom
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2196f, 0.1843f, 0.1255f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(2063, 1958);
         glVertex2f(2187, 2141);
@@ -1048,19 +1049,9 @@ void renderShapes() {
         glVertex2f(2063, 1958);
     glEnd();
 
-    // Right Door
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(1979, 1614);
-        glVertex2f(1912, 1537);
-        glVertex2f(1933, 698);
-        glVertex2f(2008, 680);
-        glVertex2f(1979, 1614);
-    glEnd();
-
 
     // Right Door Frame
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.5451f, 0.5333f, 0.5059f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1975, 1733);
         glVertex2f(1982, 1739);
@@ -1074,20 +1065,42 @@ void renderShapes() {
     glEnd();
 
     // Right Door Frame Inner Part
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2392f, 0.2510f, 0.2235f, 1.0f);  
     glBegin(GL_POLYGON);
-        glVertex2f(1845, 1553);
+        glVertex2f(1845, 1553); // BL
         glVertex2f(1865, 688);
-        glVertex2f(2008, 647);
-        glVertex2f(2008, 662);
         glVertex2f(1891, 696);
         glVertex2f(1869, 1552);
         glVertex2f(1848, 1557);
         glVertex2f(1845, 1553);
+
+    glEnd();
+
+
+    // Right Door Frame Inner Part Pt 2
+    glColor4f(0.1451f, 0.1529f, 0.1490f, 1.0f); 
+    glBegin(GL_POLYGON);
+
+        glVertex2f(1865, 688);
+        glVertex2f(1891, 696);
+        glVertex2f(2008, 662);
+        glVertex2f(2008, 647);
+        glVertex2f(1865, 688);
+
+    glEnd();
+
+    // Right Door
+    glColor4f(0.1882f, 0.1961f, 0.1843f, 1.0f);  
+    glBegin(GL_POLYGON);
+        glVertex2f(1979, 1614);
+        glVertex2f(1912, 1537);
+        glVertex2f(1933, 698);
+        glVertex2f(2008, 680);
+        glVertex2f(1979, 1614);
     glEnd();
 
     // Right Door Box
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2382f, 0.2461f, 0.2343f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(2006, 741);
         glVertex2f(1958, 749);
@@ -1098,7 +1111,7 @@ void renderShapes() {
 
 
     // First shape: Right Door Bottom Box
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.2382f, 0.2461f, 0.2343f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1989, 1276);
         glVertex2f(1942, 1251);
@@ -1116,7 +1129,7 @@ void renderShapes() {
     glEnd();
 
     // Right Door Floor Sliver Thingy
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.4941f, 0.4824f, 0.4549f, 1.0f);  
     glBegin(GL_POLYGON);
         glVertex2f(1912, 1553);
         glVertex2f(1900, 1559);
@@ -1124,8 +1137,6 @@ void renderShapes() {
         glVertex2f(1977, 1627);
         glVertex2f(1912, 1553);
     glEnd();
-
-
     glFlush();  // Render the shapes
 }
 
