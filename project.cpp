@@ -307,7 +307,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Six
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.451, 0.565, 0.651, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1006, 1081);
         glVertex2f(1024, 1073);
@@ -321,7 +321,7 @@ void renderShapes() {
 
 
     // Left Picture Seven
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.020, 0.035, 0.071, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1003, 1083);
         glVertex2f(1019, 1075);
