@@ -2,9 +2,94 @@
 #include <iostream>
 #include <cstdlib>  // for rand() and srand()
 #include <ctime>    // for time()
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+#define TEXTURES 1 //array of textures
+// Declare texture IDs
+GLuint id[TEXTURES];
+
+
+
+// Initialization function
+void init() {
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);  // Set the background color to dark gray
+    glEnable(GL_TEXTURE_2D);                // Enable 2D texturing (though we don't use it now)
+
+    // Set up orthographic projection with window dimensions
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0, 2855, 2141, 0);  // Use your window dimensions for 2D projection
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+void loadTexture(const char* filename, int textureIndex) {
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
+    if (data) {
+        GLenum format;
+        if (nrChannels == 4) {
+            format = GL_RGBA;  // Handle RGBA textures
+        } else if (nrChannels == 3) {
+            format = GL_RGB;  // Handle RGB textures
+        }
+
+        glGenTextures(1, &id[textureIndex]);
+        glBindTexture(GL_TEXTURE_2D, id[textureIndex]);
+
+        // Set texture wrapping and filtering options
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        // Load the texture into OpenGL
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        stbi_image_free(data);  // Free the image memory after loading
+    } else {
+        printf("Failed to load texture: %s\n", filename);
+    }
+}
+
+void drawBackdoor() {
+
+    // Enable 2D texturing
+    glEnable(GL_TEXTURE_2D);
+
+    // Bind the texture for the backdoor
+    glBindTexture(GL_TEXTURE_2D, id[0]);
+
+    // Set color to white to ensure the texture is not tinted by previous color settings
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+    // Draw the polygon for the door with texture mapping
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(1303.0f, 1066.0f);  // Top-left corner
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(1407.0f, 1066.0f);  // Top-right corner
+        glTexCoord2f(1.0f, 0.0f); glVertex2f(1406.0f, 762.0f);   // Bottom-right corner
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(1300.0f, 761.0f);   // Bottom-left corner
+    glEnd();
+
+    // Unbind the texture after drawing the polygon
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    // Disable 2D texturing
+    glDisable(GL_TEXTURE_2D);
+
+    // Flush the drawing commands to ensure the polygon is rendered
+    glFlush();
+}
+
 
 void renderShapes() {
     glClear(GL_COLOR_BUFFER_BIT);  // Clear the screen
+
+    // Disable texturing for non-textured objects
+    glDisable(GL_TEXTURE_2D);
+
 
     glLineWidth(2.5f);  // Set line width for polygon edges
 
@@ -15,6 +100,7 @@ void renderShapes() {
     auto randomColor = []() -> float {
         return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
     };
+
     //Ceiling
     glColor4f(0.624, 0.639, 0.682, 1.0);
     glBegin(GL_POLYGON);
@@ -277,7 +363,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Three
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.992, 0.384, 0.537, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(993, 878);
         glVertex2f(1007, 877);
@@ -287,7 +373,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Four
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.020, 0.035, 0.071, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1007, 905);
         glVertex2f(993, 905);
@@ -331,7 +417,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Eight
-    glColor3f(randomColor(), randomColor(), randomColor());
+    glColor4f(0.769, 0.773, 0.780, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1004, 1126);
         glVertex2f(1019, 1115);
@@ -361,7 +447,8 @@ void renderShapes() {
     glEnd();
 
     // Left Side Far Door Wall
-    glColor4f(0.0353f, 0.0627f, 0.1020f, 1.0f); 
+    // Wall piece under the back door lowered ceiling
+    glColor4f(0.118, 0.137, 0.153, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1177, 651);
         glVertex2f(1195, 678);
@@ -435,7 +522,6 @@ void renderShapes() {
         glVertex2f(1365, 612);
     glEnd();
 
-
     // Exit Sign
     glColor4f(0.937, 0.055, 0.310, 1.0);
     glBegin(GL_POLYGON);
@@ -447,7 +533,9 @@ void renderShapes() {
     glEnd();
 
     // Middle Door Wall
-    glColor4f(0.1255f, 0.1843f, 0.2118f, 1.0f); 
+    //glColor4f(0.1255f, 0.1843f, 0.2118f, 1.0f); 
+    //glColor4f(0.306, 0.310, 0.286, 1.0);
+    glColor4f(0.280, 0.290, 0.300, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1195, 678);
         glVertex2f(1202, 1094);
@@ -460,7 +548,7 @@ void renderShapes() {
         glVertex2f(1195, 678);
     glEnd();
 
-    // The Middle Door
+    // The Middle Door w
     glColor4f(0.0, 0.027, 0.090, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1284, 1105);
@@ -468,20 +556,6 @@ void renderShapes() {
         glVertex2f(1429, 738);
         glVertex2f(1281, 738);
         glVertex2f(1284, 1105);
-    glEnd();
-
-    // Door Window
-    glColor4f(0.212, 0.220, 0.208, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1303, 1066);
-        glVertex2f(1407, 1066);
-        glVertex2f(1406, 762);
-        glVertex2f(1401, 762);
-        glVertex2f(1401, 768);
-        glVertex2f(1356, 768);
-        glVertex2f(1356, 761);
-        glVertex2f(1300, 761);
-        glVertex2f(1303, 1066);
     glEnd();
 
     // Middle Wall Right Bottom
@@ -767,39 +841,46 @@ void renderShapes() {
         glVertex2f(1977, 1627);
         glVertex2f(1912, 1553);
     glEnd();
+
     glFlush();  // Render the shapes
+
+    // Reset color to white after drawing non-textured objects
+    glColor3f(1.0f, 1.0f, 1.0f);
+    // Swap buffers (for double buffering)
+    glutSwapBuffers();
+}
+//helper function for displaying
+void displayCombined() {
+    // Clear the screen
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // 1. Render non-textured shapes first (without texturing)
+    renderShapes();
+
+    // 2. Now render the textured backdoor (enable texturing only for this part)
+    drawBackdoor();
+
+    // Swap buffers if using double buffering
+    glutSwapBuffers();
 }
 
-// Initialization function
-void init() {
-    // Set background color to dark gray
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-    // Set up 2D orthographic projection to match the given dimensions
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    // Swap the y-axis by setting (0, 2141) at the bottom-left and (2855, 0) at the top-right
-    gluOrtho2D(0, 2855, 2141, 0);  // Adjusted projection for the given coordinate system
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-}
-
-// Main function
 int main(int argc, char** argv) {
     // Initialize GLUT
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(2855, 2141);  // Set window size based on the coordinate system
-    glutCreateWindow("OpenGL 2D Line Rendering with GLUT");
-
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);  // Use single buffering and RGB color mode
+    glutInitWindowSize(2855, 2141);  // Set the window size
+    glutCreateWindow("OpenGL Rendering");
+    //glDisable(GL_LIGHTING);  // Disable lighting to avoid darkening of shapes
     // Initialize OpenGL
     init();
 
-    
-    //glutDisplayFunc(renderLines);
+    loadTexture("backdoor.png",0);
 
-    glutDisplayFunc(renderShapes);
+    // Set the display callback function
+    glutDisplayFunc(displayCombined);
+
     // Enter the main loop
     glutMainLoop();
 
