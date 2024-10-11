@@ -9,14 +9,21 @@
 //g++ project.cpp -o app -lGL -lGLU -lglut -lGLEW
 
 
-#define TEXTURES 1 //array of textures
+#define TEXTURES 2 //array of textures
 // Declare texture IDs
 GLuint id[TEXTURES];
 
 // Initialization function
 void init() {
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);  // Set the background color to dark gray
-    glEnable(GL_TEXTURE_2D);                // Enable 2D texturing (though we don't use it now)
+    glEnable(GL_TEXTURE_2D);                // Enable 2D texturing
+
+    // Enable blending for transparency (if needed)
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Disable lighting to prevent it from affecting textures
+    glDisable(GL_LIGHTING);
 
     // Set up orthographic projection with window dimensions
     glMatrixMode(GL_PROJECTION);
@@ -25,16 +32,28 @@ void init() {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+    // Check maximum texture size
+    int maxTextureSize;
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+    printf("Maximum texture size: %d\n", maxTextureSize);
 }
+
 void loadTexture(const char* filename, int textureIndex) {
     int width, height, nrChannels;
     unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
     if (data) {
+        printf("Loaded texture: %s (Width: %d, Height: %d, Channels: %d)\n", filename, width, height, nrChannels);
+        
         GLenum format;
         if (nrChannels == 4) {
             format = GL_RGBA;  // Handle RGBA textures
         } else if (nrChannels == 3) {
             format = GL_RGB;  // Handle RGB textures
+        } else {
+            printf("Unsupported number of channels: %d\n", nrChannels);
+            stbi_image_free(data);
+            return;
         }
 
         glGenTextures(1, &id[textureIndex]);
@@ -43,7 +62,7 @@ void loadTexture(const char* filename, int textureIndex) {
         // Set texture wrapping and filtering options
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // Use mipmapping
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         // Load the texture into OpenGL
@@ -51,10 +70,12 @@ void loadTexture(const char* filename, int textureIndex) {
         glGenerateMipmap(GL_TEXTURE_2D);
 
         stbi_image_free(data);  // Free the image memory after loading
+        printf("Texture loaded and mipmaps generated for: %s\n", filename);
     } else {
         printf("Failed to load texture: %s\n", filename);
     }
 }
+
 
 void drawBackdoor() {
     glEnable(GL_TEXTURE_2D);
@@ -74,13 +95,43 @@ void drawBackdoor() {
 
     glDisable(GL_TEXTURE_2D);
 
-    glFlush();
+    //glFlush();
+}
+
+void drawExitSign() {
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, id[1]); // Bind the exit sign texture
+    std::cout << "Drawing Exit Sign with Texture ID: " << id[1] << std::endl;
+
+    // Set texture environment mode to replace
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    glColor3f(1.0f, 1.0f, 1.0f); // Set color to white to ensure texture colors are displayed correctly
+
+    glBegin(GL_QUADS);
+        // Define texture coordinates and corresponding vertex positions
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(1397.0f, 611.0f);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(1459.0f, 610.0f);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f(1459.0f, 572.0f);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(1396.0f, 573.0f);
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, 0); // Unbind the texture
+
+    glDisable(GL_TEXTURE_2D);
+
+    // Check for OpenGL errors
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "OpenGL error while drawing exit sign: " << err << std::endl;
+    }
 }
 
 
 
 void renderShapes() {
-    glClear(GL_COLOR_BUFFER_BIT);  // Clear the screen
+    //glClear(GL_COLOR_BUFFER_BIT);  // Clear the screen
 
     glLineWidth(2.5f);  // Set line width for polygon edges
 
@@ -515,17 +566,6 @@ void renderShapes() {
     glEnd();
 
 
-
-    // Exit Sign
-    glColor4f(0.937, 0.055, 0.310, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1397, 611);
-        glVertex2f(1459, 610);
-        glVertex2f(1459, 572);
-        glVertex2f(1396, 573);
-        glVertex2f(1396, 611);
-    glEnd();
-
     // Middle Door Wall
     glColor4f(0.280, 0.290, 0.300, 1.0); 
     glBegin(GL_POLYGON);
@@ -898,9 +938,6 @@ void renderShapes() {
         glVertex2f(1818, 1106);
     glEnd();
 
-
-
-    
     glFlush();  // Render the shapes
 
 }
@@ -909,13 +946,15 @@ void displayCombined() {
 
     renderShapes();
     drawBackdoor();
+    drawExitSign();
 
     glutSwapBuffers();
 }
 
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    // Use double buffering for smoother rendering
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(2855, 2141);
     glutCreateWindow("OpenGL Rendering");
 
@@ -926,7 +965,9 @@ int main(int argc, char** argv) {
     }
 
     init();
-    loadTexture("backdoor.png", 0);
+    
+    loadTexture("backdoor.png", 0);    // Load backdoor texture
+    loadTexture("Exit_Sign.png", 1);   // Load exit sign texture
 
     glutDisplayFunc(displayCombined);
 
