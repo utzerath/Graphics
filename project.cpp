@@ -1,15 +1,17 @@
-#include <GL/glut.h>
+#include <GL/glew.h>   // GLEW first
+#include <GL/glut.h>   // GLUT after GLEW
 #include <iostream>
 #include <cstdlib>  // for rand() and srand()
 #include <ctime>    // for time()
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+//g++ project.cpp -o app -lGL -lGLU -lglut -lGLEW
+
+
 #define TEXTURES 1 //array of textures
 // Declare texture IDs
 GLuint id[TEXTURES];
-
-
 
 // Initialization function
 void init() {
@@ -55,51 +57,32 @@ void loadTexture(const char* filename, int textureIndex) {
 }
 
 void drawBackdoor() {
-
-    // Enable 2D texturing
     glEnable(GL_TEXTURE_2D);
 
-    // Bind the texture for the backdoor
     glBindTexture(GL_TEXTURE_2D, id[0]);
 
-    // Set color to white to ensure the texture is not tinted by previous color settings
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    // Draw the polygon for the door with texture mapping
     glBegin(GL_QUADS);
-        glTexCoord2f(0.0f, 1.0f); glVertex2f(1303.0f, 1066.0f);  // Top-left corner
-        glTexCoord2f(1.0f, 1.0f); glVertex2f(1407.0f, 1066.0f);  // Top-right corner
-        glTexCoord2f(1.0f, 0.0f); glVertex2f(1406.0f, 762.0f);   // Bottom-right corner
-        glTexCoord2f(0.0f, 0.0f); glVertex2f(1300.0f, 761.0f);   // Bottom-left corner
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(1303.0f, 1066.0f);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(1407.0f, 1066.0f);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f(1406.0f, 762.0f);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(1300.0f, 761.0f);
     glEnd();
 
-    // Unbind the texture after drawing the polygon
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    // Disable 2D texturing
     glDisable(GL_TEXTURE_2D);
 
-    // Flush the drawing commands to ensure the polygon is rendered
     glFlush();
 }
+
 
 
 void renderShapes() {
     glClear(GL_COLOR_BUFFER_BIT);  // Clear the screen
 
-    // Disable texturing for non-textured objects
-    glDisable(GL_TEXTURE_2D);
-
-
     glLineWidth(2.5f);  // Set line width for polygon edges
-
-    // Seed the random number generator
-    srand(static_cast<unsigned>(time(0)));
-
-    // Helper function to generate random float between 0 and 1
-    auto randomColor = []() -> float {
-        return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-    };
 
     //Ceiling
     glColor4f(0.624, 0.639, 0.682, 1.0);
@@ -110,7 +93,7 @@ void renderShapes() {
         glVertex2f(1084, 431);
         glVertex2f(1144, 432);
         glVertex2f(1162, 471);
-        glVertex2f(1165, 588);
+        glVertex2f(1166, 588);
         glVertex2f(1396, 591);
         glVertex2f(1396, 573);
         glVertex2f(1459, 571);
@@ -118,7 +101,7 @@ void renderShapes() {
         glVertex2f(1555, 592);
         glVertex2f(1601, 536);
         glVertex2f(1602, 474);
-        glVertex2f(1627, 436);
+        glVertex2f(1628, 438);
         glVertex2f(1689, 437);
         glVertex2f(2094, 0);
         glVertex2f(878, 0);
@@ -181,6 +164,102 @@ void renderShapes() {
         glVertex2f(2591, 0);
 
     glEnd();
+
+    // Left Door Wall
+    glColor4f(0.8588f, 0.8353f, 0.7882f, 1.0f);  
+    glBegin(GL_POLYGON);
+        glVertex2f(898, 622);
+        glVertex2f(880, 65);
+        glVertex2f(1084, 431);
+        glVertex2f(1104, 1309);
+        glVertex2f(1009, 1519);
+        glVertex2f(988, 671);
+        glVertex2f(898, 622);
+    glEnd();
+
+    // Left Door Stop
+    glColor3f(97.0f / 255.0f, 94.0f / 255.0f, 86.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(930, 1610);
+        glVertex2f(948, 1577);
+        glVertex2f(938, 1572);
+        glVertex2f(930, 1581);
+        glVertex2f(930, 1610);
+    glEnd();
+
+    
+    // Left Door Dark Part
+    glColor3f(3.0f / 255.0f, 2.0f / 255.0f, 0.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(900, 669);
+        glVertex2f(912, 673);
+        glVertex2f(938, 1572);
+        glVertex2f(930, 1581);
+        glVertex2f(900, 669);
+    glEnd();
+
+    // Left Door Part
+    glColor3f(53.0f / 255.0f, 54.0f / 255.0f, 50.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(977, 1578);
+        glVertex2f(948, 1578);
+        glVertex2f(937, 1573);
+        glVertex2f(912, 673);
+        glVertex2f(955, 692);
+        glVertex2f(977, 1578);
+    glEnd();
+
+    // Left Door Part 2
+     glColor3f(20.0f / 255.0f, 31.0f / 255.0f, 32.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(985, 702);
+        glVertex2f(900, 669);
+        glVertex2f(899, 642);
+        glVertex2f(984, 685);
+        glVertex2f(985, 702);
+    glEnd();
+
+    // Left Door Part 3
+    glColor3f(65.0f / 255.0f, 66.0f / 255.0f, 62.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(955, 692);
+        glVertex2f(985, 702);
+        glVertex2f(1004, 1578);
+        glVertex2f(977, 1578);
+        glVertex2f(955, 692);
+    glEnd();
+
+    // Left Door Part 4
+    glColor3f(103.0f / 255.0f, 102.0f / 255.0f, 101.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(1004, 1578);
+        glVertex2f(1010, 1567);
+        glVertex2f(988, 672);
+        glVertex2f(984, 669);
+        glVertex2f(1004, 1578);
+    glEnd();
+
+    // Left Door Part 5
+    glColor3f(119.0f / 255.0f, 120.0f / 255.0f, 114.0f / 255.0f);
+    glBegin(GL_POLYGON);
+
+        glVertex2f(899, 642);
+        glVertex2f(899, 622);
+        glVertex2f(984, 669);
+        glVertex2f(984, 685);
+        glVertex2f(889, 642);
+    glEnd();
+
+    // Left Door Wall Bottom
+    glColor4f(0.5843f, 0.5490f, 0.4824f, 1.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1104, 1309);
+        glVertex2f(1009, 1519);
+        glVertex2f(1009, 1567);
+        glVertex2f(1104, 1345);
+        glVertex2f(1104, 1309);
+    glEnd();
+
     // Far Left Pillar
     glColor4f(0.5176f, 0.4863f, 0.4353f, 1.0f); 
     glBegin(GL_POLYGON);
@@ -213,28 +292,6 @@ void renderShapes() {
         glVertex2f(894, 2141);
     glEnd();
 
-
-    // Left Door Wall
-    glColor4f(0.8588f, 0.8353f, 0.7882f, 1.0f);  
-    glBegin(GL_POLYGON);
-        glVertex2f(898, 622);
-        glVertex2f(880, 65);
-        glVertex2f(1084, 431);
-        glVertex2f(1104, 1309);
-        glVertex2f(1009, 1519);
-        glVertex2f(988, 671);
-        glVertex2f(898, 622);
-    glEnd();
-
-    // Left Door Wall Bottom
-    glColor4f(0.5843f, 0.5490f, 0.4824f, 1.0f); 
-    glBegin(GL_POLYGON);
-        glVertex2f(1104, 1309);
-        glVertex2f(1009, 1519);
-        glVertex2f(1009, 1561);
-        glVertex2f(1104, 1339);
-        glVertex2f(1104, 1309);
-    glEnd();
 
     // Left Middle Pillar Front Square
     glColor4f(0.4784f, 0.4784f, 0.4314f, 1.0f);  // Red, Green, Blue, Alpha
@@ -277,71 +334,6 @@ void renderShapes() {
         glVertex2f(1164, 1310);
     glEnd();
 
-    // Left Door Frame Part
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(899, 641);
-        glVertex2f(984, 685);
-        glVertex2f(1004, 1575);
-        glVertex2f(977, 1575);
-        glVertex2f(955, 692);
-        glVertex2f(900, 668);
-        glVertex2f(899, 641);
-    glEnd();
-
-    // Left Door Frame Part (Second)
-    glColor3f(0, 0, 0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1004, 1575);
-        glVertex2f(983, 686);
-        glVertex2f(899, 641);
-        glVertex2f(898, 622);
-        glVertex2f(988, 671);
-        glVertex2f(1010, 1566);
-        glVertex2f(1004, 1575);
-    glEnd();
-
-
-    // Left Door Stop
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(930, 1610);
-        glVertex2f(948, 1577);
-        glVertex2f(938, 1572);
-        glVertex2f(930, 1581);
-        glVertex2f(930, 1610);
-    glEnd();
-
-    // Left Door Dark Part
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(900, 669);
-        glVertex2f(912, 673);
-        glVertex2f(938, 1572);
-        glVertex2f(930, 1581);
-        glVertex2f(900, 669);
-    glEnd();
-
-    // Left Door Handle
-    glColor3f(randomColor(), randomColor(), randomColor());
-    glBegin(GL_POLYGON);
-        glVertex2f(923, 1154);
-        glVertex2f(944, 1154);
-        glVertex2f(948, 1147);
-        glVertex2f(922, 1147);
-        glVertex2f(922, 1130);
-        glVertex2f(926, 1130);
-        glVertex2f(926, 1138);
-        glVertex2f(932, 1138);
-        glVertex2f(935, 1141);
-        glVertex2f(956, 1141);
-        glVertex2f(956, 1152);
-        glVertex2f(947, 1165);
-        glVertex2f(923, 1165);
-        glVertex2f(923, 1154);
-    glEnd();
-
-
     // Left Picture One
     glColor4f(0.808, 0.910, 0.910, 1.0);
     glBegin(GL_POLYGON);
@@ -363,7 +355,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Three
-    glColor4f(0.992, 0.384, 0.537, 1.0);
+    glColor3f(134.0f / 255.0f, 143.0f / 255.0f, 114.0f / 255.0f);
     glBegin(GL_POLYGON);
         glVertex2f(993, 878);
         glVertex2f(1007, 877);
@@ -373,7 +365,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Four
-    glColor4f(0.020, 0.035, 0.071, 1.0);
+    glColor3f(143.0f / 255.0f, 150.0f / 255.0f, 161.0f / 255.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1007, 905);
         glVertex2f(993, 905);
@@ -417,7 +409,7 @@ void renderShapes() {
     glEnd();
 
     // Left Picture Eight
-    glColor4f(0.769, 0.773, 0.780, 1.0);
+    glColor3f(138.0f / 255.0f, 143.0f / 255.0f, 143.0f / 255.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1004, 1126);
         glVertex2f(1019, 1115);
@@ -429,11 +421,11 @@ void renderShapes() {
     // Skinny Piece of Wall Left Side
     glColor4f(0.2824f, 0.3059f, 0.3059f, 1.0f);  
     glBegin(GL_POLYGON);
-        glVertex2f(1165, 588);
+        glVertex2f(1164, 587);
         glVertex2f(1175, 588);
         glVertex2f(1186, 1132);
         glVertex2f(1176, 1150);
-        glVertex2f(1165, 588);
+        glVertex2f(1164, 587);
     glEnd();
 
     // Skinny Bottom Left Side
@@ -447,8 +439,7 @@ void renderShapes() {
     glEnd();
 
     // Left Side Far Door Wall
-    // Wall piece under the back door lowered ceiling
-    glColor4f(0.118, 0.137, 0.153, 1.0);
+    glColor4f(0.0353f, 0.0627f, 0.1020f, 1.0f); 
     glBegin(GL_POLYGON);
         glVertex2f(1177, 651);
         glVertex2f(1195, 678);
@@ -460,8 +451,9 @@ void renderShapes() {
     glEnd();
 
     // Sprinkler Middle Bottom (Above Middle Door)
-    //not working as or right now
-    glColor4f(1.0, 0.412, 0.706, 1.0);
+    // Using the specific RGBA color: 40, 60, 67, 255
+    glColor3f(40.0f / 255.0f, 60.0f / 255.0f, 67.0f / 255.0f);
+    glBegin(GL_POLYGON);
         glVertex2f(1176, 648);
         glVertex2f(1539, 651);
         glVertex2f(1508, 680);
@@ -522,6 +514,8 @@ void renderShapes() {
         glVertex2f(1365, 612);
     glEnd();
 
+
+
     // Exit Sign
     glColor4f(0.937, 0.055, 0.310, 1.0);
     glBegin(GL_POLYGON);
@@ -533,9 +527,7 @@ void renderShapes() {
     glEnd();
 
     // Middle Door Wall
-    //glColor4f(0.1255f, 0.1843f, 0.2118f, 1.0f); 
-    //glColor4f(0.306, 0.310, 0.286, 1.0);
-    glColor4f(0.280, 0.290, 0.300, 1.0);
+    glColor4f(0.280, 0.290, 0.300, 1.0); 
     glBegin(GL_POLYGON);
         glVertex2f(1195, 678);
         glVertex2f(1202, 1094);
@@ -548,7 +540,7 @@ void renderShapes() {
         glVertex2f(1195, 678);
     glEnd();
 
-    // The Middle Door w
+    // The Middle Door
     glColor4f(0.0, 0.027, 0.090, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(1284, 1105);
@@ -700,16 +692,6 @@ void renderShapes() {
         glVertex2f(1675, 1302);
     glEnd();
 
-    // Right Door Wall Bottom
-    // not worlking tried testing with hot pink
-    glColor4f(1.0f, 0.4118f, 0.7059f, 1.0f);  
-        glVertex2f(1675, 1302);
-        glVertex2f(1675, 1331);
-        glVertex2f(1838, 1546);
-        glVertex2f(1839, 1509);
-        glVertex2f(1675, 1302);
-    glEnd();
-
     // Right Door Wall Bottom Pt 2
     glColor4f(0.1961f, 0.1569f, 0.1098f, 1.0f);  
     glBegin(GL_POLYGON);
@@ -842,46 +824,112 @@ void renderShapes() {
         glVertex2f(1912, 1553);
     glEnd();
 
+    // Right Door Wall Bottom
+    // Using the specific RGBA color: 54, 50, 41, 255
+    glColor3f(54.0f / 255.0f, 50.0f / 255.0f, 41.0f / 255.0f);
+    glBegin(GL_POLYGON);
+        glVertex2f(1675, 1302);
+        glVertex2f(1675, 1331);
+        glVertex2f(1838, 1546);
+        glVertex2f(1839, 1509);
+        glVertex2f(1675, 1302);
+    glEnd();
+
+    // Right Picture 1
+    glColor3f(16.0f / 255.0f, 24.0f / 255.0f, 18.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1829, 814);
+        glVertex2f(1826, 901);
+        glVertex2f(1840, 902);
+        glVertex2f(1841, 857);
+        glVertex2f(1855, 857);
+        glVertex2f(1857, 813);
+        glVertex2f(1829, 814);
+    glEnd();
+
+    // Right Picture 2
+    glColor3f(160.0f / 255.0f, 160.0f / 255.0f, 160.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1840, 902);
+        glVertex2f(1841, 857);
+        glVertex2f(1855, 857);
+        glVertex2f(1854, 903);
+        glVertex2f(1840, 902);
+    glEnd();
+
+    // Room Number
+    glColor3f(14.0f / 255.0f, 24.0f / 255.0f, 26.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1830, 904);
+        glVertex2f(1831, 928);
+        glVertex2f(1847, 933);
+        glVertex2f(1847, 905);
+        glVertex2f(1830, 904);
+    glEnd();
+
+    // Right Back Picture
+    glColor3f(20.0f / 255.0f, 17.0f / 255.0f, 36.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1821, 955);
+        glVertex2f(1845, 962);
+        glVertex2f(1846, 1119);
+        glVertex2f(1818, 1106);
+        glVertex2f(1821, 955);
+    glEnd();
+
+    // Right Blue Picture
+    glColor3f(139.0f / 255.0f, 158.0f / 255.0f, 170.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1819, 953);
+        glVertex2f(1819, 1062);
+        glVertex2f(1832, 1072);
+        glVertex2f(1840, 1020);
+        glVertex2f(1841, 959);
+        glVertex2f(1819, 953);
+    glEnd();
+
+    // Right Back Picture
+    glColor3f(163.0f / 255.0f, 162.0f / 255.0f, 164.0f / 255.0f); 
+    glBegin(GL_POLYGON);
+        glVertex2f(1818, 1106);
+        glVertex2f(1816, 1127);
+        glVertex2f(1846, 1142);
+        glVertex2f(1846, 1119);
+        glVertex2f(1818, 1106);
+    glEnd();
+
+
+
+    
     glFlush();  // Render the shapes
 
-    // Reset color to white after drawing non-textured objects
-    glColor3f(1.0f, 1.0f, 1.0f);
-    // Swap buffers (for double buffering)
-    glutSwapBuffers();
 }
-//helper function for displaying
 void displayCombined() {
-    // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // 1. Render non-textured shapes first (without texturing)
     renderShapes();
-
-    // 2. Now render the textured backdoor (enable texturing only for this part)
     drawBackdoor();
 
-    // Swap buffers if using double buffering
     glutSwapBuffers();
 }
 
-
-
 int main(int argc, char** argv) {
-    // Initialize GLUT
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);  // Use single buffering and RGB color mode
-    glutInitWindowSize(2855, 2141);  // Set the window size
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(2855, 2141);
     glutCreateWindow("OpenGL Rendering");
-    //glDisable(GL_LIGHTING);  // Disable lighting to avoid darkening of shapes
-    // Initialize OpenGL
+
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        std::cerr << "Error initializing GLEW: " << glewGetErrorString(err) << std::endl;
+        return -1;
+    }
+
     init();
+    loadTexture("backdoor.png", 0);
 
-    loadTexture("backdoor.png",0);
-
-    // Set the display callback function
     glutDisplayFunc(displayCombined);
 
-    // Enter the main loop
     glutMainLoop();
 
     return 0;
