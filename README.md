@@ -17,6 +17,8 @@ This project demonstrates an OpenGL application using GLUT and GLEW libraries. I
    
 3. Install Supporting packages: -lGL -lGLU -lglut -lGLEW
 
+   For installing, follow these commands:
+
    sudo apt update
 
    sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
