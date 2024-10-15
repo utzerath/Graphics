@@ -897,8 +897,9 @@ void displayCombined() {
     // Swap buffers to display the result
     glutSwapBuffers();
 }
-
-
+void idle() {
+    glutPostRedisplay();
+}
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     // Use double buffering for smoother rendering
@@ -914,12 +915,19 @@ int main(int argc, char** argv) {
 
     init();
     
+    //for looading all textures
     loadTexture("backdoor.png", 0);    // Load backdoor texture
     loadTexture("Exit_Sign.png", 1);   // Load exit sign texture
     loadTexture("ceiling.png" , 2);
     loadTexture("Floor.png" , 3);
     loadTexture("rightsidedoor.png" , 4);
+    
+    
+    // Force display to refresh
+    glutPostRedisplay();
+
     glutDisplayFunc(displayCombined);
+    glutIdleFunc(idle);  // Set the idle function
 
     glutMainLoop();
 
