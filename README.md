@@ -26,7 +26,7 @@ This project demonstrates an OpenGL application using GLUT and GLEW libraries. I
    sudo apt install libglew-dev
 
 
-### Do not delete any supporting files as they are essential for running the program.
+### Do not delete any supporting files as they are essential textures for the program.
 
 ### Compile
 Compile the program using the following command:
