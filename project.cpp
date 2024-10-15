@@ -9,7 +9,7 @@
 //g++ project.cpp -o app -lGL -lGLU -lglut -lGLEW
 
 
-#define TEXTURES 2 //array of textures
+#define TEXTURES 5 //array of textures
 // Declare texture IDs
 GLuint id[TEXTURES];
 
@@ -76,13 +76,15 @@ void loadTexture(const char* filename, int textureIndex) {
     }
 }
 
-
 void drawBackdoor() {
     glEnable(GL_TEXTURE_2D);
 
     glBindTexture(GL_TEXTURE_2D, id[0]);
+    
+    // Ensure texture replaces underlying color
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);  // Set color to white for proper texture rendering
 
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 1.0f); glVertex2f(1303.0f, 1066.0f);
@@ -92,42 +94,102 @@ void drawBackdoor() {
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glDisable(GL_TEXTURE_2D);
-
-    //glFlush();
 }
 
 void drawExitSign() {
     glEnable(GL_TEXTURE_2D);
 
-    glBindTexture(GL_TEXTURE_2D, id[1]); // Bind the exit sign texture
-    std::cout << "Drawing Exit Sign with Texture ID: " << id[1] << std::endl;
+    glBindTexture(GL_TEXTURE_2D, id[1]);
 
-    // Set texture environment mode to replace
+    // Ensure texture replaces underlying color
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-    glColor3f(1.0f, 1.0f, 1.0f); // Set color to white to ensure texture colors are displayed correctly
+    glColor3f(1.0f, 1.0f, 1.0f);  // Set color to white for proper texture rendering
 
     glBegin(GL_QUADS);
-        // Define texture coordinates and corresponding vertex positions
         glTexCoord2f(0.0f, 1.0f); glVertex2f(1397.0f, 611.0f);
         glTexCoord2f(1.0f, 1.0f); glVertex2f(1459.0f, 610.0f);
         glTexCoord2f(1.0f, 0.0f); glVertex2f(1459.0f, 572.0f);
         glTexCoord2f(0.0f, 0.0f); glVertex2f(1396.0f, 573.0f);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, 0); // Unbind the texture
-
+    glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
-
-    // Check for OpenGL errors
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "OpenGL error while drawing exit sign: " << err << std::endl;
-    }
 }
+void drawCeiling() {
+    glEnable(GL_TEXTURE_2D);
 
+    // Bind the texture for the ceiling
+    glBindTexture(GL_TEXTURE_2D, id[2]);
+
+    // Set texture environment mode to replace (so the color doesn't affect it)
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    // Set the color to white so it doesn’t alter the texture color
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+    // Begin drawing the quad for the ceiling, fitting it to the entire window size (2855x2141)
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 1.0f); 
+    glVertex2f(0.0f, 2141.0f);  
+    glTexCoord2f(1.0f, 1.0f); 
+    glVertex2f(2855.0f, 2141.0f);  
+    glTexCoord2f(1.0f, 0.0f); 
+    glVertex2f(2855.0f, 0.0f);  
+    glTexCoord2f(0.0f, 0.0f); 
+    glVertex2f(0.0f, 0.0f);  
+    
+    glEnd();
+
+    // Unbind the texture
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    // Disable texture mapping
+    glDisable(GL_TEXTURE_2D);
+}
+void drawFloorTexture() {
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, id[3]); // Floor texture ID
+
+    glDisable(GL_DEPTH_TEST); // Disable depth testing for 2D overlay
+
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // Use white color to display texture as-is
+
+    glBegin(GL_QUADS);
+        // Adjusted texture coordinates
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 2141.0f);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(2855.0f, 2141.0f);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f(2855.0f, 0.0f);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
+    glEnd();
+
+    glEnable(GL_DEPTH_TEST); // Re-enable depth testing if needed
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+}
+void drawSideDoor() {
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, id[4]); // Floor texture ID
+
+    glDisable(GL_DEPTH_TEST); // Disable depth testing for 2D overlay
+
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // Use white color to display texture as-is
+
+    glBegin(GL_QUADS);
+        // Adjusted texture coordinates
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 2141.0f);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(2855.0f, 2141.0f);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f(2855.0f, 0.0f);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
+    glEnd();
+
+    glEnable(GL_DEPTH_TEST); // Re-enable depth testing if needed
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+}
 
 
 void renderShapes() {
@@ -135,65 +197,6 @@ void renderShapes() {
 
     glLineWidth(2.5f);  // Set line width for polygon edges
 
-    //Ceiling
-    glColor4f(0.624, 0.639, 0.682, 1.0);
-    glBegin(GL_POLYGON);
-
-        glVertex2f(878, 0);
-        glVertex2f(879, 66);
-        glVertex2f(1084, 431);
-        glVertex2f(1144, 432);
-        glVertex2f(1162, 471);
-        glVertex2f(1166, 588);
-        glVertex2f(1396, 591);
-        glVertex2f(1396, 573);
-        glVertex2f(1459, 571);
-        glVertex2f(1459, 592);
-        glVertex2f(1555, 592);
-        glVertex2f(1601, 536);
-        glVertex2f(1602, 474);
-        glVertex2f(1628, 438);
-        glVertex2f(1689, 437);
-        glVertex2f(2094, 0);
-        glVertex2f(878, 0);
-
-    glEnd();
-    //Floor 
-    glColor4f(0.286, 0.271, 0.227, 1.0);
-    glBegin(GL_POLYGON);
-
-        glVertex2f(925, 2141);
-        glVertex2f(953, 2075);
-        glVertex2f(952, 2005);
-        glVertex2f(945, 1998);
-        glVertex2f(932, 1609);
-        glVertex2f(949, 1578);
-        glVertex2f(1004, 1578);
-        glVertex2f(1106, 1340);
-        glVertex2f(1165, 1338);
-        glVertex2f(1181, 1297);
-        glVertex2f(1175, 1169);
-        glVertex2f(1189, 1148);
-        glVertex2f(1188, 1125);
-        glVertex2f(1284, 1105);
-        glVertex2f(1429, 1104);
-        glVertex2f(1517, 1117);
-        glVertex2f(1530, 1132);
-        glVertex2f(1530, 1138);
-        glVertex2f(1591, 1213);
-        glVertex2f(1590, 1292);
-        glVertex2f(1613, 1330);
-        glVertex2f(1674, 1330);
-        glVertex2f(1847, 1556);
-        glVertex2f(1979, 1653);
-        glVertex2f(1976, 1732);
-        glVertex2f(2067, 1845);
-        glVertex2f(2063, 1958);
-        glVertex2f(2056, 2018);
-        glVertex2f(2126, 2141);
-        glVertex2f(925, 2141);
-
-    glEnd();
     //Close Left Wall
     glColor4f(0.588, 0.561, 0.490, 1.0);
     glBegin(GL_POLYGON);
@@ -502,8 +505,7 @@ void renderShapes() {
     glEnd();
 
     // Sprinkler Middle Bottom (Above Middle Door)
-    // Using the specific RGBA color: 40, 60, 67, 255
-    glColor3f(40.0f / 255.0f, 60.0f / 255.0f, 67.0f / 255.0f);
+    glColor4f(0.2647f, 0.2788f, 0.2753f, 1.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1176, 648);
         glVertex2f(1539, 651);
@@ -513,8 +515,8 @@ void renderShapes() {
     glEnd();
 
 
-    // Box Middle Bottom
-    glColor4f(0.4941f, 0.4824f, 0.4549f, 1.0f); 
+    // Box Middle Bottom on the wall above door
+    glColor4f(0.2382f, 0.2509f, 0.2478f, 1.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1264, 656);
         glVertex2f(1458, 658);
@@ -524,7 +526,7 @@ void renderShapes() {
     glEnd();
 
     // Top Wall Part Facing You With Vent
-    glColor4f(0.2824f, 0.3059f, 0.3059f, 1.0f);  
+    glColor4f(0.2863f, 0.3098f, 0.3098f, 1.0f);
     glBegin(GL_POLYGON);
         glVertex2f(1176, 648);
         glVertex2f(1175, 589);
@@ -601,61 +603,6 @@ void renderShapes() {
         glVertex2f(1429, 1094);
     glEnd();
 
-
-    // Far Right Wall Dark Part
-    glColor4f(0.2824f, 0.3059f, 0.3059f, 1.0f);  //color matched with back wall vent piece
-    glBegin(GL_POLYGON);
-        glVertex2f(1510, 1117);
-        glVertex2f(1510, 1097);
-        glVertex2f(1504, 1093);
-        glVertex2f(1508, 680);
-        glVertex2f(1539, 651);
-        glVertex2f(1540, 592);
-        glVertex2f(1554, 592);
-        glVertex2f(1601, 535);
-        glVertex2f(1601, 575);
-        glVertex2f(1584, 653);
-        glVertex2f(1582, 772);
-        glVertex2f(1530, 789);
-        glVertex2f(1516, 794);
-        glVertex2f(1514, 1114);
-        glVertex2f(1510, 1114);
-        glVertex2f(1510, 1117);
-    glEnd();
-
-    //------------------------
-    //group these 3 together to be adjusted later for lighting
-    // Far Right Wall Light Part
-    glColor4f(0.749, 0.753, 0.722, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1601, 575);
-        glVertex2f(1584, 653);
-        glVertex2f(1582, 772);
-        glVertex2f(1597, 774);
-        glVertex2f(1601, 575);
-    glEnd();
-
-    // Far Right Wall Door Reflection
-    glColor4f(0.749, 0.753, 0.722, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1530, 789);
-        glVertex2f(1597, 774);
-        glVertex2f(1593, 1080);
-        glVertex2f(1529, 1082);
-        glVertex2f(1530, 789);
-    glEnd();
-
-
-    // Far right wall Bottom Wall lower part (not the trim)
-    glColor4f(0.749, 0.753, 0.722, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1529, 1082);
-        glVertex2f(1529, 1120);
-        glVertex2f(1591, 1196);
-        glVertex2f(1593, 1080);
-        glVertex2f(1529, 1082);
-    glEnd();
-    //-----------------------
     // Far Right Wall Bottom
     glColor4f(0.5843f, 0.5490f, 0.4824f, 1.0f); 
     glBegin(GL_POLYGON);
@@ -664,16 +611,6 @@ void renderShapes() {
         glVertex2f(1591, 1213);
         glVertex2f(1529, 1137);
         glVertex2f(1529, 1120);
-    glEnd();
-
-    // Far Right Door
-    glColor4f(0.400, 0.663, 0.773, 1.0);
-    glBegin(GL_POLYGON);
-        glVertex2f(1514, 1114);
-        glVertex2f(1529, 1131);
-        glVertex2f(1530, 789);
-        glVertex2f(1516, 794);
-        glVertex2f(1514, 1114);
     glEnd();
 
     // Far Right Pillar Side
@@ -944,12 +881,23 @@ void renderShapes() {
 void displayCombined() {
     glClear(GL_COLOR_BUFFER_BIT);
 
+    // Disable textures before rendering shapes
+    glDisable(GL_TEXTURE_2D);
+
+    // Render shapes (non-textured)
     renderShapes();
+
+    // Now enable textures and render the textured objects
     drawBackdoor();
     drawExitSign();
+    drawCeiling();
+    drawFloorTexture();
+    drawSideDoor();
 
+    // Swap buffers to display the result
     glutSwapBuffers();
 }
+
 
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
@@ -968,7 +916,9 @@ int main(int argc, char** argv) {
     
     loadTexture("backdoor.png", 0);    // Load backdoor texture
     loadTexture("Exit_Sign.png", 1);   // Load exit sign texture
-
+    loadTexture("ceiling.png" , 2);
+    loadTexture("Floor.png" , 3);
+    loadTexture("rightsidedoor.png" , 4);
     glutDisplayFunc(displayCombined);
 
     glutMainLoop();
